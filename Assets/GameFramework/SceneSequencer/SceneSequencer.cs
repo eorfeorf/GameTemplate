@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class SceneSequencer : MonoBehaviour
+public sealed class SceneSequencer : MonoBehaviour
 {
     [SerializeField] private Title titleScenePrefab;
     [SerializeField] private InGame inGameScenePrefab;

@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 
+/// <summary>
+/// 外部操作用のインターフェイス. 
+/// </summary>
 public interface IScene
 {
-    bool IsEnd { get; }
+    UniTask IsEndAsync();
     void Close();
 }
