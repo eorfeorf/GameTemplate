@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: InGame
-  contentPrefab: {fileID: 0}
+  contentPrefab: {fileID: 3786068310022012897, guid: d73c5097664e96e4886dc4774912c9ca, type: 3}

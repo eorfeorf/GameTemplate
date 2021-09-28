@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class ScreenFader : MonoBehaviour
+public class ScreenFader : MonoBehaviour, IScreenFader
 {
     [SerializeField] private UniversalRendererData rendererData;
     
     private readonly Color defaultColor = new Color(255f/32f,255f/32f,255f/32f,1f);
+    private readonly float defaultTime = 0.5f;
+    
     private Material mat;
     private float timer;
 
@@ -23,10 +25,6 @@ public class ScreenFader : MonoBehaviour
             mat = Instantiate(screenFade.settings.material);
             screenFade.settings.runTimeMaterial = mat;
         }
-    }
-
-    private void Start()
-    {
     }
 
     public void FadeIn(float time, Color color)
@@ -46,6 +44,28 @@ public class ScreenFader : MonoBehaviour
 
         StartCoroutine(FadeOut_Impl(time, mat));
     }
+
+    public void FadeIn(float time)
+    {
+        FadeIn(time, defaultColor);
+    }
+
+    public void FadeOut(float time)
+    {
+        FadeOut(time, defaultColor);
+    }
+
+    public void FadeIn()
+    {
+        FadeIn(defaultTime, defaultColor);
+    }
+
+    public void FadeOut()
+    {
+        FadeOut(defaultTime, defaultColor);
+    }
+
+    #region Implement
 
     private IEnumerator FadeIn_Impl(float time, Material mat)
     {
@@ -83,4 +103,5 @@ public class ScreenFader : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
 }

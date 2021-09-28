@@ -1,6 +1,6 @@
 ﻿using UniRx;
 
-interface ITimer
+public interface ITimer
 {
     public IReactiveProperty<bool> IsEnd { get; }
 

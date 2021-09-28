@@ -1,0 +1,18 @@
+{
+    "name": "Game.Scripts.GameManager",
+    "rootNamespace": "",
+    "references": [
+        "GUID:99c4c8fa2e683e844873bc1d1f50feb5",
+        "GUID:a772d1abcb8a4cc439e81dfe450093ec",
+        "GUID:5b92d0b5eb4ae59419b7c0ef15893e3d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
