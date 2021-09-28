@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Result
-  contentPrefab: {fileID: 0}
+  contentPrefab: {fileID: 7079843126518150235, guid: f22a9bbe26214ea4c800eca8da5da9c7, type: 3}
