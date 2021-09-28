@@ -10,15 +10,8 @@ using UnityEngine;
 public abstract class SceneBase : MonoBehaviour, IScene
 {
     [SerializeField] protected string sceneName;
-    [SerializeField] protected GameObject contentPrefab;
-    
-    protected GameObject content; 
-    protected bool isEnd = false;
 
-    private void Awake()
-    {
-        content = Instantiate(contentPrefab, transform);
-    }
+    protected bool isEnd = false;
 
     public async UniTask IsEndAsync()
     {
