@@ -6,7 +6,7 @@ public sealed class Result : SceneBase
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            isEnd = true;
+            IsEnd = true;
         }
     }
 }

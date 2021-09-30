@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public sealed class Title : SceneBase
@@ -6,7 +7,7 @@ public sealed class Title : SceneBase
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            isEnd = true;
+            IsEnd = true;
         }
     }
 }
