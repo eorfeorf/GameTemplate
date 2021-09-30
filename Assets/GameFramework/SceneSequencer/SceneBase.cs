@@ -11,11 +11,11 @@ public abstract class SceneBase : MonoBehaviour, IScene
 {
     [SerializeField] protected string sceneName;
 
-    protected bool isEnd = false;
+    protected bool IsEnd = false;
 
     public async UniTask IsEndAsync()
     {
-        await UniTask.WaitUntil(() => isEnd);
+        await UniTask.WaitUntil(() => IsEnd);
         Debug.Log($"SceneBase : {sceneName} -> end");
     }
 
