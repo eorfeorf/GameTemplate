@@ -1,21 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public sealed class SceneSequencer : MonoBehaviour
 {
-    [SerializeField] private Title titleScenePrefab;
-    [SerializeField] private InGame inGameScenePrefab;
-    [SerializeField] private Result resultScenePrefab;
-
-    //private IScreenFader fader;
-
-    private void Awake()
-    {
-        //fader = FindObjectOfType<ScreenFader>();
-    }
+    [SerializeField] private SceneBase titleScenePrefab;
+    [SerializeField] private SceneBase inGameScenePrefab;
+    [SerializeField] private SceneBase resultScenePrefab;
 
     private async void Start()
     {

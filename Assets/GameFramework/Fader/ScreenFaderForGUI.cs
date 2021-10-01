@@ -70,7 +70,7 @@ public class ScreenFaderForGUI : ScreenFaderBase
                 return;
             }
 
-            timer = Mathf.Clamp(timer + Time.deltaTime, 0f, 1f);
+            timer = Mathf.Clamp(timer + Time.deltaTime, 0f, time);
             var alpha = 1f - (timer / time);
             mat.SetFloat("_Alpha", alpha);
             Debug.Log(alpha);
@@ -89,7 +89,7 @@ public class ScreenFaderForGUI : ScreenFaderBase
                 return;
             }
 
-            timer = Mathf.Clamp(timer + Time.deltaTime, 0f, 1f);
+            timer = Mathf.Clamp(timer + Time.deltaTime, 0f, time);
             var alpha = timer / time;
             mat.SetFloat("_Alpha", alpha);
 
