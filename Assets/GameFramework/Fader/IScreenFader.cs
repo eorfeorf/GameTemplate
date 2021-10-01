@@ -1,14 +1,15 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public interface IScreenFader
 {
-    public void FadeIn(float time, Color color);
-    public void FadeOut(float time, Color color);
+    public UniTask FadeIn(float time, Color color);
+    public UniTask FadeOut(float time, Color color);
     
-    public void FadeIn(float time);
-    public void FadeOut(float time);
+    public UniTask FadeIn(float time);
+    public UniTask FadeOut(float time);
 
-    public void FadeIn();
-    public void FadeOut();
+    public UniTask FadeIn();
+    public UniTask FadeOut();
 
 }
