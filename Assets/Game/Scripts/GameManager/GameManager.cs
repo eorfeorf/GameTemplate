@@ -12,20 +12,19 @@ namespace Game.Scripts.GameManager
     
     public class GameManager : MonoBehaviour
     {
-        [InspectorName("timer")]
+        [SerializeField] private ScreenFaderBase fader;
         [SerializeField] private Module timerModule;
-        [InspectorName("score")]
         [SerializeField] private Module scoreModule;
-
+        
+        public IScreenFader Fader { get; private set; }
         public ITimer Timer { get; private set; }
         public IScore Score { get; private set; }
-        public IScreenFader Fader { get; private set; }
 
         private void Awake()
         {
-            Timer = TryCreate(timerModule).GetComponent<ITimer>();
-            Score = TryCreate(scoreModule).GetComponent<IScore>();
-            Fader = FindObjectOfType<ScreenFader>();
+            Fader = Instantiate(fader);
+            Timer = TryCreate(timerModule)?.GetComponent<ITimer>();
+            Score = TryCreate(scoreModule)?.GetComponent<IScore>();
         }
 
         private GameObject TryCreate(Module module)

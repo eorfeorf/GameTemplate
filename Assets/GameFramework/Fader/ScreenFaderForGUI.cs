@@ -1,32 +1,24 @@
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
-public class ScreenFader : ScreenFaderBase
+public class ScreenFaderForGUI : ScreenFaderBase
 {
-    [SerializeField] private ForwardRendererData rendererData;
+    [SerializeField] private RawImage rawImage;
     [SerializeField] private Color defaultColor = Color.black;
     [SerializeField] private float defaultTime = 0.5f;
 
-    private Material mat;
     private float timer;
+    private Material mat;
 
     private CancellationToken cancellationToken;
 
     private void Awake()
     {
         DontDestroyOnLoad(this);
-
-        var feature = rendererData.rendererFeatures.Find(item => item is ScreenFadeFeature);
-        if (feature is ScreenFadeFeature screenFade)
-        {
-            mat = Instantiate(screenFade.settings.material);
-            screenFade.settings.runTimeMaterial = mat;
-        }
-
         cancellationToken = this.GetCancellationTokenOnDestroy();
+        mat = rawImage.material;
     }
 
     public override async UniTask FadeIn(float time, Color color)

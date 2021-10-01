@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7733c75c8b0b77409f8573408388ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fader: {fileID: 4609189045696137902, guid: 82343c0d705514c469f86d1713139ba0, type: 3}
   timerModule:
     use: 0
     prefab: {fileID: 8359651796914203056, guid: 6ac41093835c71d479fde33a434d85af, type: 3}
