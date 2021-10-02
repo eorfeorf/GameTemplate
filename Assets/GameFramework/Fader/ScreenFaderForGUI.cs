@@ -73,7 +73,6 @@ public class ScreenFaderForGUI : ScreenFaderBase
             timer = Mathf.Clamp(timer + Time.deltaTime, 0f, time);
             var alpha = 1f - (timer / time);
             mat.SetFloat("_Alpha", alpha);
-            Debug.Log(alpha);
 
             await UniTask.Yield(PlayerLoopTiming.Update, ct);
         }
