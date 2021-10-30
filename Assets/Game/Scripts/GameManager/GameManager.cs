@@ -1,5 +1,7 @@
 using System;
+using Game.Scripts.Stage;
 using UnityEngine;
+using Game.Scripts.Player;
 
 namespace Game.Scripts.GameManager
 {
@@ -20,8 +22,17 @@ namespace Game.Scripts.GameManager
         public ITimer Timer { get; private set; }
         public IScore Score { get; private set; }
 
-        private void Awake()
+        public StageSequencer StageSequencer;
+
+        private Player.Player player;
+
+        private void Start()
         {
+            StageSequencer = new StageSequencer();
+
+            player = GameObject.FindObjectOfType<Player.Player>();
+            player.Setup(StageSequencer);
+            
             Fader = Instantiate(fader);
             Timer = TryCreate(timerModule)?.GetComponent<ITimer>();
             Score = TryCreate(scoreModule)?.GetComponent<IScore>();

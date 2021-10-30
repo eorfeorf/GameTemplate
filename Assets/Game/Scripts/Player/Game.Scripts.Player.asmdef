@@ -1,12 +1,9 @@
 {
-    "name": "Game.Scripts.GameManager",
+    "name": "Game.Scripts.Player",
     "rootNamespace": "",
     "references": [
-        "GUID:99c4c8fa2e683e844873bc1d1f50feb5",
-        "GUID:a772d1abcb8a4cc439e81dfe450093ec",
-        "GUID:5b92d0b5eb4ae59419b7c0ef15893e3d",
-        "GUID:40cf319affb204947900235af264d237",
-        "GUID:5ff42d2a809f95b499d1a4bc6fe6b014"
+        "GUID:16f97e9fbd6d41249a8430c313f233ac",
+        "GUID:40cf319affb204947900235af264d237"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

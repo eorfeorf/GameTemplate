@@ -1,29 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UniRx;
 using UnityEngine;
 
-/// <summary>
-/// ステージの管理
-/// ステージの生成、ステージの破棄
-/// </summary>
-public class Stage : MonoBehaviour
+namespace Game.Scripts.Stage
 {
-    
-
-    private void Start()
+    /// <summary>
+    /// ステージを定義.
+    /// </summary>
+    public class Stage
     {
-        // プレイヤーの位置を見る
-    }
+        private ICell[] cells = new ICell[GameInfo.GameInfo.FieldNum * GameInfo.GameInfo.FieldNum];
 
-    public void Make()
-    {
-        
-    }
-
-    public void Destroy()
-    {
-        
+        public ICell GetCell(Vector2Int position)
+        {
+            return cells[position.y * GameInfo.GameInfo.FieldNum + position.x];
+        }
     }
 }
