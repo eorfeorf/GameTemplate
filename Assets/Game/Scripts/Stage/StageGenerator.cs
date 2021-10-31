@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class StageGenerator : MonoBehaviour
+namespace Game.Scripts.Stage
 {
-    // Start is called before the first frame update
-    void Start()
+    public static class StageGenerator
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public static Stage Generate()
+        {
+            var ret = new Stage();
+            
+            return ret;
+        }
     }
 }

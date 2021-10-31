@@ -18,8 +18,8 @@ namespace Game.Scripts.Player
         {
             var move = GetInputMove();
             var temp = new Vector2Int(
-                Mathf.Clamp(pos.x + move.x, 0, GameInfo.GameInfo.FieldNum - 1),
-                Mathf.Clamp(pos.y + move.y, 0, GameInfo.GameInfo.FieldNum - 1)
+                Mathf.Clamp(pos.x + move.x, 0, GameInfo.GameInfo.Edge - 1),
+                Mathf.Clamp(pos.y + move.y, 0, GameInfo.GameInfo.Edge - 1)
             );
 
             var canMove = stageSequencer.CanMoveToTargetPosition(temp);
@@ -63,8 +63,8 @@ namespace Game.Scripts.Player
             // var y = pos.y - GameInfo.FieldHalf;
             // 0~7 -> -4 ~ 4
             float x, y;
-            x = pos.x - GameInfo.GameInfo.FieldHalf;
-            y = pos.y - GameInfo.GameInfo.FieldHalf;
+            x = pos.x - GameInfo.GameInfo.EdgeHalf;
+            y = pos.y - GameInfo.GameInfo.EdgeHalf;
             x = x * GameInfo.GameInfo.Size;
             y = y * GameInfo.GameInfo.Size;
             x += GameInfo.GameInfo.SizeHalf;
