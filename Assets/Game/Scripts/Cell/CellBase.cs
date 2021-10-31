@@ -2,11 +2,22 @@ using UnityEngine;
 
 namespace Game.Scripts.Cell
 {
-    public abstract class CellBase : ICell
+    public class CellBase : ICell
     {
-        public CellType Type => type;
-        protected CellType type;
+        public CellType Type { get; set; }
 
-        public abstract bool CheckCanMove();
+        public CellBase()
+        {
+            Type = CellType.None;
+        }
+        public CellBase(CellType type)
+        {
+            Type = type;
+        }
+        
+        public virtual bool CheckCanMove()
+        {
+            return true;
+        }
     }
 }
