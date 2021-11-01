@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
 
@@ -19,7 +20,12 @@ namespace Game.Scripts.Player
         public IReadOnlyReactiveProperty<Unit> OnPushedCancel => onPushedCancel;
         private ReactiveProperty<Unit> onPushedCancel = new ReactiveProperty<Unit>();
 
-        private void Update()
+        private void Start()
+        {
+            InputUpdate().Forget();
+        }
+
+        private UniTaskVoid InputUpdate()
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -41,6 +47,8 @@ namespace Game.Scripts.Player
             {
                 onPushedDecide.Value = Unit.Default;
             }
+            
+            return new UniTaskVoid();
         }
     }
 }
