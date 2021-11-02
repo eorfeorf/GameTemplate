@@ -8,17 +8,17 @@ namespace Game.Scripts.Player
     public class PlayerInputProvider : MonoBehaviour, IInputProvider
     {
         public IReadOnlyReactiveProperty<Unit> OnPushedLeft => onPushedLeft;
-        private ReactiveProperty<Unit> onPushedLeft = new ReactiveProperty<Unit>();
+        private readonly ReactiveProperty<Unit> onPushedLeft = new ReactiveProperty<Unit>();
         public IReadOnlyReactiveProperty<Unit> OnPushedRight => onPushedRight;
-        private ReactiveProperty<Unit> onPushedRight = new ReactiveProperty<Unit>();
+        private readonly ReactiveProperty<Unit> onPushedRight = new ReactiveProperty<Unit>();
         public IReadOnlyReactiveProperty<Unit> OnPushedUp => onPushedUp;
-        private ReactiveProperty<Unit> onPushedUp = new ReactiveProperty<Unit>();
+        private readonly ReactiveProperty<Unit> onPushedUp = new ReactiveProperty<Unit>();
         public IReadOnlyReactiveProperty<Unit> OnPushedDown => onPushedDown;
-        private ReactiveProperty<Unit> onPushedDown = new ReactiveProperty<Unit>();
+        private readonly ReactiveProperty<Unit> onPushedDown = new ReactiveProperty<Unit>();
         public IReadOnlyReactiveProperty<Unit> OnPushedDecide => onPushedDecide;
-        private ReactiveProperty<Unit> onPushedDecide = new ReactiveProperty<Unit>();
+        private readonly ReactiveProperty<Unit> onPushedDecide = new ReactiveProperty<Unit>();
         public IReadOnlyReactiveProperty<Unit> OnPushedCancel => onPushedCancel;
-        private ReactiveProperty<Unit> onPushedCancel = new ReactiveProperty<Unit>();
+        private readonly ReactiveProperty<Unit> onPushedCancel = new ReactiveProperty<Unit>();
 
         private void Start()
         {
