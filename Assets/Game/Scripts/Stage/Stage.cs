@@ -16,9 +16,12 @@ namespace Game.Scripts.Stage
             cells = new ICell[GameInfo.GameInfo.Edge * GameInfo.GameInfo.Edge];
 
             // TODO:仮初期化.実際はStageGeneratorに任せる.
-            for (int i = 0; i < cells.Length; ++i)
+            var edge = GameInfo.GameInfo.Edge;
+            for (var i = 0; i < cells.Length; ++i)
             {
-                cells[i] = new CellBase(CellType.None);
+                var x = i % edge;
+                var y = i / edge;
+                cells[i] = new CellBase(CellType.None, new Vector2Int(x, y));
             }
         }
 

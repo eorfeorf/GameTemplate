@@ -30,7 +30,7 @@ namespace Game.Scripts.GameManager
         {
             StageSequencer = new StageSequencer();
 
-            player = GameObject.FindObjectOfType<Player.Player>();
+            //player = GameObject.FindObjectOfType<Player.Player>();
             player.Setup(StageSequencer);
             
             Fader = Instantiate(fader);
