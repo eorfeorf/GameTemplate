@@ -16,7 +16,7 @@ namespace Game.Scripts.Player
             disposable = new CompositeDisposable();
 
             model.Pos.Subscribe(view.ApplySpriteTransform).AddTo(disposable);
-            view.Move.Subscribe(model.UpdatePosition).AddTo(disposable);
+            view.Move.Subscribe(move => model.UpdatePosition(move)).AddTo(disposable);
         }
 
         ~PlayerPresenter()

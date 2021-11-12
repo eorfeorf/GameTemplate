@@ -9,13 +9,31 @@ namespace Game.Scripts.Player
     {
         [SerializeField] private Transform spriteTransform;
 
-        public ReactiveProperty<Vector2Int> Move = new ReactiveProperty<Vector2Int>();
+        public IReadOnlyReactiveProperty<Vector2Int> Move => move;
+        private readonly ReactiveProperty<Vector2Int> move = new ReactiveProperty<Vector2Int>();
 
-        private PlayerPresenter presenter;
+        private bool left = false, right = false, up = false, down = false;
 
-        public void Setup(StageSequencer stageSequencer)
+        public void Setup(StageSequencer stageSequencer, IInputEventProvider inputEventProvider)
         {
-            presenter = new PlayerPresenter(this, stageSequencer);
+            new PlayerPresenter(this, stageSequencer);
+
+            inputEventProvider.OnPushedLeft.Subscribe(_ =>
+            {
+                left = true;
+            }).AddTo(this);
+            inputEventProvider.OnPushedRight.Subscribe(_ =>
+            {
+                right = true;
+            }).AddTo(this);
+            inputEventProvider.OnPushedUp.Subscribe(_ =>
+            {
+                up = true;
+            }).AddTo(this);
+            inputEventProvider.OnPushedDown.Subscribe(_ =>
+            {
+                down = true;
+            }).AddTo(this);
         }
 
         public void ApplySpriteTransform(Vector2Int pos)
@@ -33,32 +51,25 @@ namespace Game.Scripts.Player
 
         private void Update()
         {
-            var move = GetInputMove();
-            Move.Value = move;
-        }
-
-        private Vector2Int GetInputMove()
-        {
-            var ret = new Vector2Int();
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (left)
             {
-                ret.x = -1;
+                move.Value = new Vector2Int(-1, 0);
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (right)
             {
-                ret.x = 1;
+                move.Value = new Vector2Int(1, 0);
             }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            else if (up)
             {
-                ret.y = 1;
+                move.Value = new Vector2Int(0, 1);
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if (down)
             {
-                ret.y = -1;
+                move.Value = new Vector2Int(0, -1);
             }
-
-            return ret;
+            
+            right = left = up = down = false;
+            move.Value = Vector2Int.zero;
         }
     }
 }
