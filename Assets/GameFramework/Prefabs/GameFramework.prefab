@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8189788092381977241
+--- !u!1 &3540876767448919659
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2853480620842725735}
-  - component: {fileID: 4359831808405499636}
+  - component: {fileID: 3853620218502015786}
+  - component: {fileID: -1384293749864877579}
   m_Layer: 0
-  m_Name: InputEventProvider
+  m_Name: GameFramework
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2853480620842725735
+--- !u!4 &3853620218502015786
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8189788092381977241}
+  m_GameObject: {fileID: 3540876767448919659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,16 +31,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4359831808405499636
+--- !u!114 &-1384293749864877579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8189788092381977241}
+  m_GameObject: {fileID: 3540876767448919659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a1eaa0358d28c54c85717fba5ed0407, type: 3}
+  m_Script: {fileID: 11500000, guid: b63c6bc18202d2444a7861253ccef05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerKeyboardInput: 1
+  faderPrefab: {fileID: 3966014880313309471, guid: 187f2ff9ca1052a458fe796b6c3e8bdc, type: 3}
+  inputPrefab: {fileID: 4359831808405499636, guid: 34bc1475e489a574199056ac95dca223, type: 3}
+  timerModule:
+    use: 0
+    prefab: {fileID: 8359651796914203056, guid: 6ac41093835c71d479fde33a434d85af, type: 3}
+  scoreModule:
+    use: 0
+    prefab: {fileID: 8154621044951730605, guid: 1ba1f91611987f54797e84afd3110a5b, type: 3}
