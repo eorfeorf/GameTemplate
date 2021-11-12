@@ -1,0 +1,25 @@
+using System;
+using UnityEngine;
+using UnityEngine.Assertions;
+
+// TODO:ランタイムで入力タイプを切り替えられるようにする.
+public class InputEventProviderFactory : MonoBehaviour
+{
+    [SerializeField] private bool playerKeyboardInput;
+
+    public IInputEventProvider InputEventProvider;
+    
+    private void Awake()
+    {
+        if (playerKeyboardInput)
+        {
+            InputEventProvider = gameObject.AddComponent<PlayerInputEventProvider>();   
+        }
+        
+#if UNITY_EDITOR
+        InputEventProvider = gameObject.AddComponent<DebugKeyInputEventProvider>();
+#endif
+        
+        Assert.IsNotNull(InputEventProvider);
+    }
+}
