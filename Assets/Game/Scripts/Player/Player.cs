@@ -8,12 +8,16 @@ namespace Game.Scripts.Player
     {
         public IReadOnlyReactiveProperty<Vector2Int> Pos => pos;
         
-        private ReactiveProperty<Vector2Int> pos;
-        private StageSequencer stageSequencer;
+        private readonly ReactiveProperty<Vector2Int> pos = new ReactiveProperty<Vector2Int>();
+        private readonly StageSequencer stageSequencer;
 
-        private void Update()
+        public Player(StageSequencer stageSequencer)
         {
-            var move = GetInputMove();
+            this.stageSequencer = stageSequencer;
+        }
+
+        public void UpdatePosition(Vector2Int move)
+        {
             var temp = new Vector2Int(
                 Mathf.Clamp(pos.Value.x + move.x, 0, GameInfo.GameInfo.Edge - 1),
                 Mathf.Clamp(pos.Value.y + move.y, 0, GameInfo.GameInfo.Edge - 1)
@@ -24,36 +28,6 @@ namespace Game.Scripts.Player
             {
                 pos.Value = temp;   
             }
-            //Debug.Log(pos);
-        }
-
-        private Vector2Int GetInputMove()
-        {
-            var ret = new Vector2Int();
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                ret.x = -1;
-            }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                ret.x = 1;
-            }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                ret.y = 1;
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                ret.y = -1;
-            }
-
-            return ret;
-        }
-
-        public void Setup(StageSequencer stageSequencer)
-        {
-            this.stageSequencer = stageSequencer;
         }
     }
 }
