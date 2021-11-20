@@ -12,19 +12,19 @@ namespace Game.Scripts.GameManager
     
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private ScreenFaderBase fader;
+        [SerializeField] private InputEventProviderFactory inputPrefab;
+        
+        // Modules
         [SerializeField] private Module timerModule;
         [SerializeField] private Module scoreModule;
         
-        public IScreenFader Fader { get; private set; }
+        public IInputEventProvider InputEventProvider { get; private set; }
         public ITimer Timer { get; private set; }
         public IScore Score { get; private set; }
 
         private void Awake()
         {
-            Fader = Instantiate(fader);
-            Timer = TryCreate(timerModule)?.GetComponent<ITimer>();
-            Score = TryCreate(scoreModule)?.GetComponent<IScore>();
+            InputEventProvider = Instantiate(inputPrefab, transform).InputEventProvider;
         }
 
         private GameObject TryCreate(Module module)
