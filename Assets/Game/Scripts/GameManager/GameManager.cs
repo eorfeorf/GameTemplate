@@ -22,9 +22,15 @@ namespace Game.Scripts.GameManager
         public ITimer Timer { get; private set; }
         public IScore Score { get; private set; }
 
+        private Player.Player player;
+        
         private void Awake()
         {
             InputEventProvider = Instantiate(inputPrefab, transform).InputEventProvider;
+            Timer = TryCreate(timerModule).GetComponent<ITimer>();
+            Score = TryCreate(scoreModule).GetComponent<IScore>();
+            
+            player = new Player.Player(InputEventProvider);
         }
 
         private GameObject TryCreate(Module module)

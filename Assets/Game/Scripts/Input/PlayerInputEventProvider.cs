@@ -19,32 +19,10 @@ public sealed class PlayerInputEventProvider : MonoBehaviour, IInputEventProvide
     private readonly ReactiveProperty<Unit> onPushedDecide = new ReactiveProperty<Unit>();
     public IReadOnlyReactiveProperty<Unit> OnPushedCancel => onPushedCancel;
     private readonly ReactiveProperty<Unit> onPushedCancel = new ReactiveProperty<Unit>();
-
-    public const int TouchNum = 10;
-    public IReadOnlyReactiveProperty<TouchInfo> OnTouched0 => onTouched0;
-    private ReactiveProperty<TouchInfo> onTouched0 = new ReactiveProperty<TouchInfo>();
-    public IReadOnlyReactiveProperty<TouchInfo> OnTouched1 => onTouched1;
-    private ReactiveProperty<TouchInfo> onTouched1 = new ReactiveProperty<TouchInfo>();
-    public IReadOnlyReactiveProperty<TouchInfo> OnTouched2 => onTouched2;
-    private ReactiveProperty<TouchInfo> onTouched2 = new ReactiveProperty<TouchInfo>();
-    public IReadOnlyReactiveProperty<TouchInfo> OnTouched3 => onTouched3;
-    private ReactiveProperty<TouchInfo> onTouched3 = new ReactiveProperty<TouchInfo>();
-    public IReadOnlyReactiveProperty<TouchInfo> OnTouched4 => onTouched4;
-    private ReactiveProperty<TouchInfo> onTouched4 = new ReactiveProperty<TouchInfo>();
-    public IReadOnlyReactiveProperty<TouchInfo> OnTouched5 => onTouched5;
-    private ReactiveProperty<TouchInfo> onTouched5 = new ReactiveProperty<TouchInfo>();
-    public IReadOnlyReactiveProperty<TouchInfo> OnTouched6 => onTouched6;
-    private ReactiveProperty<TouchInfo> onTouched6 = new ReactiveProperty<TouchInfo>();
-    public IReadOnlyReactiveProperty<TouchInfo> OnTouched7 => onTouched7;
-    private ReactiveProperty<TouchInfo> onTouched7 = new ReactiveProperty<TouchInfo>();
-    public IReadOnlyReactiveProperty<TouchInfo> OnTouched8 => onTouched8;
-    private ReactiveProperty<TouchInfo> onTouched8 = new ReactiveProperty<TouchInfo>();
-    public IReadOnlyReactiveProperty<TouchInfo> OnTouched9 => onTouched9;
-    private ReactiveProperty<TouchInfo> onTouched9 = new ReactiveProperty<TouchInfo>();
-
-    private ReactiveProperty<TouchInfo>[] onTouches;
-
-
+    
+    public IReadOnlyReactiveProperty<Touch[]> OnTouches => onTouches;
+    private ReactiveProperty<Touch[]> onTouches = new ReactiveProperty<Touch[]>();
+    
     private void Update()
     {
         onVertical.Value = Input.GetAxis("Vertical");
@@ -80,13 +58,6 @@ public sealed class PlayerInputEventProvider : MonoBehaviour, IInputEventProvide
             onPushedCancel.SetValueAndForceNotify(Unit.Default);
         }
 
-        var touches = UnityEngine.Input.touches;
-        for (var i = 0; i < TouchNum; ++i)
-        {
-                
-            var active = i < touches.Length;
-            var touch = active ? touches[i] : new Touch();
-            onTouches[i].Value = new TouchInfo(active, touch);
-        }
+        onTouches.Value = UnityEngine.Input.touches;
     }
 }
