@@ -1,4 +1,3 @@
-using Game.Scripts.Stage;
 using UniRx;
 
 namespace Game.Scripts.Player
@@ -9,14 +8,14 @@ namespace Game.Scripts.Player
         private readonly Player model;
         private readonly CompositeDisposable disposable;
         
-        public PlayerPresenter(PlayerView view, StageSequencer stageSequencer)
+        public PlayerPresenter(PlayerView view, Player model)
         {
             this.view = view;
-            model = new Player(stageSequencer);
+            this.model = model;
             disposable = new CompositeDisposable();
 
             model.Pos.Subscribe(view.ApplySpriteTransform).AddTo(disposable);
-            view.Move.Subscribe(move => model.UpdatePosition(move)).AddTo(disposable);
+            view.Move.Subscribe(model.UpdatePosition).AddTo(disposable);
         }
 
         ~PlayerPresenter()

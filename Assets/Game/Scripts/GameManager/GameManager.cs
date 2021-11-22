@@ -15,13 +15,12 @@ namespace Game.Scripts.GameManager
         private void Awake()
         {
             gameFramework = FindObjectOfType<GameFramework>();
-            stageSequencer = new StageSequencer();
-        }
-
-        private void Start()
-        {
-            var playerView = Instantiate(playerPrefab);
-            playerView.Setup(stageSequencer, gameFramework.InputEventProvider);
+            
+            var playerView = Instantiate(playerPrefab).Setup(gameFramework.InputEventProvider);
+            var playerModel = new Player.Player();
+            var playerPresenter = new PlayerPresenter(playerView, playerModel);
+            
+            stageSequencer = new StageSequencer(playerModel);
         }
     }
 }

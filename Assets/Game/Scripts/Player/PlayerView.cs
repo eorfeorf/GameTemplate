@@ -1,5 +1,3 @@
-using System;
-using Game.Scripts.Stage;
 using UniRx;
 using UnityEngine;
 
@@ -12,12 +10,13 @@ namespace Game.Scripts.Player
         public IReadOnlyReactiveProperty<Vector2Int> Move => move;
         private readonly ReactiveProperty<Vector2Int> move = new ReactiveProperty<Vector2Int>();
 
+        public IReadOnlyReactiveProperty<Unit> Decide;
+        public IReadOnlyReactiveProperty<Unit> Cancel;
+        
         private bool left = false, right = false, up = false, down = false;
 
-        public void Setup(StageSequencer stageSequencer, IInputEventProvider inputEventProvider)
+        public PlayerView Setup(IInputEventProvider inputEventProvider)
         {
-            new PlayerPresenter(this, stageSequencer);
-
             inputEventProvider.OnPushedLeft.Subscribe(_ =>
             {
                 left = true;
@@ -34,6 +33,11 @@ namespace Game.Scripts.Player
             {
                 down = true;
             }).AddTo(this);
+
+            Decide = inputEventProvider.OnPushedDecide;
+            Cancel = inputEventProvider.OnPushedCancel;
+
+            return this;
         }
 
         public void ApplySpriteTransform(Vector2Int pos)
@@ -51,25 +55,26 @@ namespace Game.Scripts.Player
 
         private void Update()
         {
+            var temp = new Vector2Int();
             if (left)
             {
-                move.Value = new Vector2Int(-1, 0);
+                temp += Vector2Int.left;
             }
-            else if (right)
+            if (right)
             {
-                move.Value = new Vector2Int(1, 0);
+                temp += Vector2Int.right;
             }
-            else if (up)
+            if (up)
             {
-                move.Value = new Vector2Int(0, 1);
+                temp += Vector2Int.up;
             }
-            else if (down)
+            if (down)
             {
-                move.Value = new Vector2Int(0, -1);
+                temp += Vector2Int.down;
             }
             
             right = left = up = down = false;
-            move.Value = Vector2Int.zero;
+            move.Value = temp;
         }
     }
 }
