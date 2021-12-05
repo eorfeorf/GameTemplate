@@ -1,16 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Game.Scripts.MusicScore;
+using Game.Scripts.Note;
 using UnityEngine;
 
-public class Stage
+namespace Game.Scripts.Stage
 {
-    public Stage(MusicScore score)
+    public class Stage : MonoBehaviour
     {
+        [SerializeField] private NoteLoader noteLoader;
         
-    }
+        private GameManager.GameManager gameManager;
+        private Player.Player player;
 
-    public void Play()
-    {
-        
+        private void Awake()
+        {
+            gameManager = FindObjectOfType<GameManager.GameManager>();
+        }
+
+        private void Start()
+        {
+            var musicScore = MusicScoreLoader.Load(0);
+            var notes = noteLoader.Load(musicScore);
+            player = new Player.Player(gameManager.InputEventProvider, notes);
+        }
     }
 }

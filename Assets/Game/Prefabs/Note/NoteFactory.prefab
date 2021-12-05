@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6889960579818708290
+--- !u!1 &4796149482697592269
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6889960579818708288}
-  - component: {fileID: 6889960579818708289}
+  - component: {fileID: 4796149482697592267}
+  - component: {fileID: 4796149482697592266}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: NoteFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6889960579818708288
+--- !u!4 &4796149482697592267
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6889960579818708290}
+  m_GameObject: {fileID: 4796149482697592269}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,22 +31,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6889960579818708289
+--- !u!114 &4796149482697592266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6889960579818708290}
+  m_GameObject: {fileID: 4796149482697592269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7733c75c8b0b77409f8573408388ddc, type: 3}
+  m_Script: {fileID: 11500000, guid: b95133f9e6ecfd0418b48f902a346d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputPrefab: {fileID: 4359831808405499636, guid: 9389477e228171a4195ccb4bcf840f72, type: 3}
-  timerModule:
-    use: 0
-    prefab: {fileID: 8359651796914203056, guid: 6ac41093835c71d479fde33a434d85af, type: 3}
-  scoreModule:
-    use: 0
-    prefab: {fileID: 8154621044951730605, guid: 1ba1f91611987f54797e84afd3110a5b, type: 3}
+  tapNotePrefab: {fileID: 8423129895385024648, guid: 3b58079d458a68d47bea5758bc161b68, type: 3}
+  longNotePrefab: {fileID: 1918068842528012585, guid: 30adcf3b39977fb4f9b0d67e7e99a2a6, type: 3}
+  flickNotePrefab: {fileID: 3684340075658582616, guid: 7ddc10b4d2e8aba47acdf2ad889f059c, type: 3}

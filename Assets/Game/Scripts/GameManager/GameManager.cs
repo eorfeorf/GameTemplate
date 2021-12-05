@@ -1,4 +1,8 @@
 using System;
+using System.Collections.Generic;
+using Game.Scripts.MusicScore;
+using Game.Scripts.Note;
+using Game.Scripts.Notes;
 using UnityEngine;
 
 namespace Game.Scripts.GameManager
@@ -21,21 +25,17 @@ namespace Game.Scripts.GameManager
         public IInputEventProvider InputEventProvider { get; private set; }
         public ITimer Timer { get; private set; }
         public IScore Score { get; private set; }
-
-        private Player.Player player;
         
         private void Awake()
         {
             InputEventProvider = Instantiate(inputPrefab, transform).InputEventProvider;
-            Timer = TryCreate(timerModule).GetComponent<ITimer>();
-            Score = TryCreate(scoreModule).GetComponent<IScore>();
-            
-            player = new Player.Player(InputEventProvider);
+            Timer = TryCreate(timerModule)?.GetComponent<ITimer>();
+            Score = TryCreate(scoreModule)?.GetComponent<IScore>();
         }
 
         private GameObject TryCreate(Module module)
         {
-            return !module.use ? null : Instantiate(module.prefab, transform);
+            return module.use ? Instantiate(module.prefab, transform) : null;
         }
     }
 }

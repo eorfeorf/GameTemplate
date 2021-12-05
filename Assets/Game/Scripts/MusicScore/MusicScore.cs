@@ -1,11 +1,12 @@
-using System.Collections.Generic;
-
-/// <summary>
-/// 楽譜データ.
-/// </summary>
-public struct MusicScore
+namespace Game.Scripts.MusicScore
 {
-    public int Id;
-    public float bpm;
-    public string title;
+    /// <summary>
+    /// 楽譜データ.
+    /// </summary>
+    public struct MusicScore
+    {
+        public int id;
+        public float bpm;
+        public string title;
+    }
 }

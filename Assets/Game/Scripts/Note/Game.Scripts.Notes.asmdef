@@ -1,7 +1,10 @@
 {
-    "name": "Game.Scripts.MusicScore",
+    "name": "Game.Scripts.Notes",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:7278fbed6bf91284ca43a2d3d8f7369c"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
