@@ -1,12 +1,28 @@
+using GameFramework.Scene;
 using UnityEngine;
 
-public sealed class Result : SceneBase
+namespace Game.Scripts.Scene
 {
-    private void Update()
+    public sealed class Result : SceneBase
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        private IScreenFader fader;
+        private void Awake()
         {
-            IsEnd = true;
+            fader = FindObjectOfType<ScreenFaderBase>();
+        }
+
+        private async void OnEnable()
+        {
+            await fader.FadeIn();
+        }
+
+        private async void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                await fader.FadeOut();
+                isEnd = true;
+            }
         }
     }
 }

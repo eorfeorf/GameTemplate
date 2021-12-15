@@ -1,25 +1,29 @@
-using System;
+using GameFramework.Scene;
 using UnityEngine;
 
-public sealed class InGame : SceneBase
+namespace Game.Scripts.Scene
 {
-    private IScreenFader fader;
+    public sealed class InGame : SceneBase
+    {
+        private IScreenFader fader;
     
-    private void Awake()
-    {
-        fader = FindObjectOfType<ScreenFaderBase>();
-    }
-
-    private void OnEnable()
-    {
-        fader.FadeIn();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
+        private void Awake()
         {
-            IsEnd = true;
+            fader = FindObjectOfType<ScreenFaderBase>();
+        }
+
+        private async void OnEnable()
+        {
+            await fader.FadeIn();
+        }
+
+        private async void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                await fader.FadeOut();
+                isEnd = true;
+            }
         }
     }
 }

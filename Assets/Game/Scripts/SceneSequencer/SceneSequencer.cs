@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+using GameFramework.Scene;
 using UnityEngine;
 
 public sealed class SceneSequencer : MonoBehaviour
