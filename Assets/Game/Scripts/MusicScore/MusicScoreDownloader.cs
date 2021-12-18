@@ -1,8 +1,8 @@
 namespace Game.Scripts.MusicScore
 {
-    public static class MusicScoreLoader
+    public static class MusicScoreDownloader
     {
-        public static MusicScore Load(int musicScoreId)
+        public static MusicScore Download(int musicScoreId)
         {
             // IDから譜面のデータを引っ張ってくる.
             MusicScore musicScore = default;

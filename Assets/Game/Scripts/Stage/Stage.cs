@@ -1,10 +1,12 @@
-using System;
 using Game.Scripts.MusicScore;
-using Game.Scripts.Note;
+using Game.Scripts.Player;
 using UnityEngine;
 
 namespace Game.Scripts.Stage
 {
+    /// <summary>
+    /// プレイするために準備するクラス
+    /// </summary>
     public class Stage : MonoBehaviour
     {
         [SerializeField] private NoteLoader noteLoader;
@@ -19,9 +21,11 @@ namespace Game.Scripts.Stage
 
         private void Start()
         {
-            var musicScore = MusicScoreLoader.Load(0);
-            var notes = noteLoader.Load(musicScore);
-            player = new Player.Player(gameManager.InputEventProvider, notes);
+            //var musicScore = MusicScoreDownloader.Download(0);
+            var musicScoreData = MusicScoreDataDownloader.Download(0);
+            var notes = noteLoader.Load(gameManager, musicScoreData);
+            player = new Player.Player(gameManager, notes);
+            player.Play();
         }
     }
 }

@@ -1,5 +1,7 @@
 using System;
+using Game.Scripts.GameManager;
 using Game.Scripts.Notes;
+using UniRx;
 using UnityEngine;
 
 namespace Game.Scripts.Note
@@ -8,14 +10,33 @@ namespace Game.Scripts.Note
     {
         private float judgeTime;
 
-        public void Initialize(NoteType type)
+        public override void Initialize(GameContext gameContext, NoteType noteType, float[] judgeTimes)
         {
-            this.type = type;
+            var judgeTime = judgeTimes[0];
+            
+            gameContext.PlayingTime.Subscribe(playTime =>
+            {
+                if (playTime >= judgeTime)
+                {
+                    return;
+                }
+                
+                var pos = Vector3.zero;
+                pos.z = judgeTime - gameContext.PlayingTime.Value;
+                Debug.Log($"{gameContext.PlayingTime.Value}");
+                transform.position = pos;
+            }).AddTo(this);
         }
 
         public override void Judge(Touch touch, float time)
         {
             throw new NotImplementedException();
+        }
+
+        public void Update()
+        {
+            // var pos = new pos(0f, 0f, );
+            // transform.position = 
         }
     }
 }

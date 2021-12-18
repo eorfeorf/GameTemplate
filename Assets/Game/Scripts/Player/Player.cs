@@ -9,17 +9,16 @@ namespace Game.Scripts.Player
     public class Player
     {
         private CompositeDisposable disposable = new CompositeDisposable();
-        private IInputEventProvider inputEventProvider;
         private List<NoteBase> notes;
 
-        private float startTime; // 開始時の時間
-        
-        public Player(IInputEventProvider inputEventProvider, List<NoteBase> notes)
+        private GameManager.GameManager gameManager;
+
+        public Player(GameManager.GameManager gameManager, List<NoteBase> notes)
         {
-            this.inputEventProvider = inputEventProvider;
+            this.gameManager = gameManager;
             this.notes = notes;
 
-            inputEventProvider.OnTouches.SkipLatestValueOnSubscribe().Subscribe(Judge).AddTo(disposable);
+            gameManager.InputEventProvider.OnTouches.SkipLatestValueOnSubscribe().Subscribe(Judge).AddTo(disposable);
         }
 
         ~Player()
@@ -29,19 +28,17 @@ namespace Game.Scripts.Player
 
         public void Play()
         {
-            startTime = Time.time;
+            gameManager.GameContext.InGamePlay();
         }
 
         private void Judge(Touch[] touches)
         {
-            var time = startTime - Time.time;
-            
             // 有効なタッチ情報をノーツに割り当てる.
             foreach (var touch in touches)
             {
                 foreach (var note in notes)
                 {
-                    note.Judge(touch, time);
+                    note.Judge(touch, gameManager.GameContext.PlayingTime.Value);
                 }
             }
         }
