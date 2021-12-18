@@ -2,11 +2,12 @@
     "name": "Game.Scripts.GameManager",
     "rootNamespace": "",
     "references": [
-        "GUID:df00dc4043ca32c4a883e480ce03cab6",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
         "GUID:99c4c8fa2e683e844873bc1d1f50feb5",
         "GUID:a772d1abcb8a4cc439e81dfe450093ec",
         "GUID:550aa677faa7d7348b43f170ddb029a4",
-        "GUID:e5bc918a34e106d47919f962ee75b895"
+        "GUID:e5bc918a34e106d47919f962ee75b895",
+        "GUID:71407d393a8f7e54da8dc444f2d1551c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
