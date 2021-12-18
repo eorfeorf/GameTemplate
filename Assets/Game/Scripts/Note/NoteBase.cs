@@ -6,6 +6,6 @@ namespace Game.Scripts.Notes
     {
         protected NoteType type;
 
-        public abstract void Judge(Touch touch);
+        public abstract void Judge(Touch touch, float time);
     }
 }

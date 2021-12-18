@@ -11,8 +11,8 @@ namespace Game.Scripts.Note
         {
             this.type = type;
         }
-    
-        public override void Judge(Touch touch)
+
+        public override void Judge(Touch touch, float time)
         {
             throw new System.NotImplementedException();
         }

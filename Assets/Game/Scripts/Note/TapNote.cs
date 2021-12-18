@@ -2,22 +2,20 @@ using System;
 using Game.Scripts.Notes;
 using UnityEngine;
 
-public class TapNote : NoteBase
+namespace Game.Scripts.Note
 {
-    private float judgeTime;
-
-    private void Awake()
+    public class TapNote : NoteBase
     {
-        
-    }
+        private float judgeTime;
 
-    public void Initialize(NoteType type)
-    {
-        this.type = type;
-    }
+        public void Initialize(NoteType type)
+        {
+            this.type = type;
+        }
 
-    public override void Judge(Touch touch)
-    {
-        throw new System.NotImplementedException();
+        public override void Judge(Touch touch, float time)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
