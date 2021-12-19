@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.UI;
 
 public class ScreenFaderForGUI : ScreenFaderBase
 {
+    [SerializeField] private Material originalMaterial;
     [SerializeField] private RawImage rawImage;
     [SerializeField] private Color defaultColor = Color.black;
     [SerializeField] private float defaultTime = 0.5f;
@@ -16,7 +18,8 @@ public class ScreenFaderForGUI : ScreenFaderBase
 
     private void Awake()
     {
-        mat = rawImage.material;
+        mat = new Material(originalMaterial);
+        rawImage.material = mat;
     }
 
     public override async UniTask FadeIn(float time, Color color, CancellationToken ct)
@@ -25,7 +28,14 @@ public class ScreenFaderForGUI : ScreenFaderBase
         mat.SetColor(BaseColor, color);
         timer = 0;
 
-        await FadeIn_Impl(time, mat, ct);
+        try
+        {
+            await FadeIn_Impl(time, mat, ct);
+        }
+        catch (Exception)
+        {
+            mat.SetFloat(Alpha, 0f);
+        }
     }
 
     public override async UniTask FadeOut(float time, Color color, CancellationToken ct)
@@ -34,7 +44,14 @@ public class ScreenFaderForGUI : ScreenFaderBase
         mat.SetColor(BaseColor, color);
         timer = 0;
 
-        await FadeOut_Impl(time, mat, ct);
+        try
+        {
+            await FadeOut_Impl(time, mat, ct);
+        }
+        catch (Exception)
+        {
+            mat.SetFloat(Alpha, 1f);
+        }
     }
 
     public override async UniTask FadeIn(float time, CancellationToken ct)
@@ -70,7 +87,7 @@ public class ScreenFaderForGUI : ScreenFaderBase
 
             timer += Time.deltaTime;
             var alpha = Mathf.Max(0f,1f - (timer / time));
-            material.SetFloat("_Alpha", alpha);
+            material.SetFloat(Alpha, alpha);
             Debug.Log($"[Fade] {alpha}");
 
             await UniTask.Yield(PlayerLoopTiming.Update, ct);
@@ -89,7 +106,7 @@ public class ScreenFaderForGUI : ScreenFaderBase
 
             timer = timer + Time.deltaTime;
             var alpha = Mathf.Min(1f, timer / time);
-            material.SetFloat("_Alpha", alpha);
+            material.SetFloat(Alpha, alpha);
             Debug.Log($"[Fade] {alpha}");
 
             await UniTask.Yield(PlayerLoopTiming.PostLateUpdate, ct);
