@@ -2,7 +2,8 @@
     "name": "GameFramework.Scene",
     "rootNamespace": "",
     "references": [
-        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:5b92d0b5eb4ae59419b7c0ef15893e3d"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

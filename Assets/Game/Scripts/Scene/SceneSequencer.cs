@@ -1,4 +1,3 @@
-using GameFramework.Scene;
 using UnityEngine;
 
 namespace Game.Scripts.Scene
