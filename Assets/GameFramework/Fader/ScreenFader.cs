@@ -12,8 +12,8 @@ public class ScreenFader : ScreenFaderBase
 
     private Material mat;
     private float timer;
-
-    private CancellationToken cancellationToken;
+    private static readonly int Alpha = Shader.PropertyToID("_Alpha");
+    private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
 
     private void Awake()
     {
@@ -25,50 +25,49 @@ public class ScreenFader : ScreenFaderBase
             mat = Instantiate(screenFade.settings.material);
             screenFade.settings.runTimeMaterial = mat;
         }
-
-        cancellationToken = this.GetCancellationTokenOnDestroy();
     }
 
-    public override async UniTask FadeIn(float time, Color color)
+    public override async UniTask FadeIn(float time, Color color, CancellationToken ct)
     {
         Debug.Log("[Fade] In Start");
-        mat.SetColor("_BaseColor", color);
+        mat.SetColor(BaseColor, color);
         timer = 0;
 
-        await FadeIn_Impl(cancellationToken, time, mat);
+        await FadeIn_Impl(time, mat, ct);
     }
 
-    public override async UniTask FadeOut(float time, Color color)
+    public override async UniTask FadeOut(float time, Color color, CancellationToken ct)
     {
         Debug.Log("[Fade] Out Start");
-        mat.SetColor("_BaseColor", color);
+        mat.SetColor(BaseColor, color);
         timer = 0;
 
-        await FadeOut_Impl(cancellationToken, time, mat);
+        await FadeOut_Impl(time, mat, ct);
     }
 
-    public override async UniTask FadeIn(float time)
+    public override async UniTask FadeIn(float time, CancellationToken ct)
     {
-        await FadeIn(time, defaultColor);
+        await FadeIn(time, defaultColor, ct);
     }
 
-    public override async UniTask FadeOut(float time)
+    public override async UniTask FadeOut(float time, CancellationToken ct)
     {
-        await FadeOut(time, defaultColor);
+        await FadeOut(time, defaultColor, ct);
     }
 
-    public override async UniTask FadeIn()
+    public override async UniTask FadeIn(CancellationToken ct)
     {
-        await FadeIn(defaultTime, defaultColor);
+        await FadeIn(defaultTime, defaultColor, ct);
     }
 
-    public override async UniTask FadeOut()
+    public override async UniTask FadeOut(CancellationToken ct)
     {
-        await FadeOut(defaultTime, defaultColor);
+        await FadeOut(defaultTime, defaultColor, ct);
     }
 
     #region Implement
-    private async UniTask FadeIn_Impl(CancellationToken ct, float time, Material mat)
+
+    private async UniTask FadeIn_Impl(float time, Material material, CancellationToken ct)
     {
         for (;;)
         {
@@ -80,13 +79,13 @@ public class ScreenFader : ScreenFaderBase
 
             timer = Mathf.Clamp(timer + Time.deltaTime, 0f, 1f);
             var alpha = 1f - (timer / time);
-            mat.SetFloat("_Alpha", alpha);
+            material.SetFloat(Alpha, alpha);
 
             await UniTask.Yield(PlayerLoopTiming.Update, ct);
         }
     }
 
-    private async UniTask FadeOut_Impl(CancellationToken ct, float time, Material mat)
+    private async UniTask FadeOut_Impl(float time, Material material, CancellationToken ct)
     {
         for (;;)
         {
@@ -98,7 +97,7 @@ public class ScreenFader : ScreenFaderBase
 
             timer = Mathf.Clamp(timer + Time.deltaTime, 0f, 1f);
             var alpha = timer / time;
-            mat.SetFloat("_Alpha", alpha);
+            material.SetFloat(Alpha, alpha);
 
             await UniTask.Yield(PlayerLoopTiming.PostLateUpdate, ct);
         }

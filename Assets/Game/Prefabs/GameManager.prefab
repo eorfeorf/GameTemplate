@@ -46,9 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7733c75c8b0b77409f8573408388ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneSequencerPrefab: {fileID: 7092568357462010483, guid: 66a4d120853b4e04a85ddac216f9f248, type: 3}
-  inputPrefab: {fileID: 4359831808405499636, guid: 9389477e228171a4195ccb4bcf840f72, type: 3}
-  gameContextPrefab: {fileID: 0}
+  fadePrefab: {fileID: 3966014880313309471, guid: 187f2ff9ca1052a458fe796b6c3e8bdc, type: 3}
   timerModule:
     use: 0
     prefab: {fileID: 8359651796914203056, guid: 6ac41093835c71d479fde33a434d85af, type: 3}
@@ -95,7 +93,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f3092ca8519c749a66c592936fb16c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayStartTime:
-    value: 0
-  PlayTime:
-    value: 0

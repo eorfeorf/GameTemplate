@@ -8,6 +8,7 @@ public class InputEventProviderFactory : MonoBehaviour
 {
     [SerializeField] private bool playerKeyboardInput;
 
+<<<<<<< HEAD
     public IInputEventProvider InputEventProvider;
 
     public IInputEventProvider Initialize()
@@ -24,18 +25,23 @@ public class InputEventProviderFactory : MonoBehaviour
         Assert.IsNotNull(InputEventProvider);
         return InputEventProvider;
     }
+=======
+    private IInputEventProvider inputEventProvider;
+>>>>>>> 22ce05d... リファクタリング
     
-    private void Awake()
+    public IInputEventProvider Initialize()
     {
         if (playerKeyboardInput)
         {
-            InputEventProvider = gameObject.AddComponent<PlayerInputEventProvider>();   
+            inputEventProvider = gameObject.AddComponent<PlayerInputEventProvider>();   
         }
         
 #if UNITY_EDITOR
-        InputEventProvider = gameObject.AddComponent<DebugKeyInputEventProvider>();
+        inputEventProvider = gameObject.AddComponent<DebugKeyInputEventProvider>();
 #endif
         
-        Assert.IsNotNull(InputEventProvider);
+        Assert.IsNotNull(inputEventProvider);
+
+        return inputEventProvider;
     }
 }
