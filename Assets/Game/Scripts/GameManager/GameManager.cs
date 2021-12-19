@@ -13,6 +13,8 @@ namespace Game.Scripts.GameManager
     
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] private ScreenFaderBase fadePrefab;
+        
         // Core
         private SceneSequencer sceneSequencer;
         private InputEventProviderFactory input;
@@ -20,7 +22,9 @@ namespace Game.Scripts.GameManager
         
         public SceneSequencer SceneSequencer { get; private set; }
         public IInputEventProvider InputEventProvider { get; private set; }
+        public IScreenFader Fader { get; private set; }
         public GameContext GameContext { get; private set; }
+        
         
         // Modules
         [SerializeField] private Module timerModule;
@@ -33,6 +37,7 @@ namespace Game.Scripts.GameManager
         {
             SceneSequencer = GetComponent<SceneSequencer>();
             InputEventProvider = GetComponent<InputEventProviderFactory>().Initialize();
+            Fader = Instantiate(fadePrefab, transform);
             GameContext = GetComponent<GameContext>();
             
             Timer = TryCreate(timerModule)?.GetComponent<ITimer>();

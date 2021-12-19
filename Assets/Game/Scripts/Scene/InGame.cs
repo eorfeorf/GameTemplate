@@ -1,3 +1,5 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using GameFramework.Scene;
 using UnityEngine;
 
@@ -5,23 +7,21 @@ namespace Game.Scripts.Scene
 {
     public sealed class InGame : SceneBase
     {
-        private IScreenFader fader;
-    
-        private void Awake()
+        protected override void Awake()
         {
-            fader = FindObjectOfType<ScreenFaderBase>();
+            base.Awake();
         }
 
         private async void OnEnable()
         {
-            await fader.FadeIn();
+            await fader.FadeIn(ct);
         }
 
         private async void Update()
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                await fader.FadeOut();
+                await fader.FadeOut(ct);
                 isEnd = true;
             }
         }

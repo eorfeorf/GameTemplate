@@ -5,22 +5,21 @@ namespace Game.Scripts.Scene
 {
     public sealed class Result : SceneBase
     {
-        private IScreenFader fader;
-        private void Awake()
+        protected override void Awake()
         {
-            fader = FindObjectOfType<ScreenFaderBase>();
+            base.Awake();
         }
 
         private async void OnEnable()
         {
-            await fader.FadeIn();
+            await fader.FadeIn(ct);
         }
 
         private async void Update()
         {
             if (Input.GetKeyDown(KeyCode.C))
             {
-                await fader.FadeOut();
+                await fader.FadeOut(ct);
                 isEnd = true;
             }
         }

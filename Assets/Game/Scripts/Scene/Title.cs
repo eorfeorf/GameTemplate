@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks.Triggers;
 using GameFramework.Scene;
 using UniRx;
 using UnityEngine;
@@ -6,12 +7,11 @@ namespace Game.Scripts.Scene
 {
     public sealed class Title : SceneBase
     {
-        private IScreenFader fader;
         private TitleView view;
-    
-        private void Awake()
+
+        protected override void Awake()
         {
-            fader = FindObjectOfType<ScreenFaderBase>();
+            base.Awake();
             view = GetComponent<TitleView>();
         }
 
@@ -19,7 +19,7 @@ namespace Game.Scripts.Scene
         {
             view.OnClickStartButton.SkipLatestValueOnSubscribe().Subscribe(async _ =>
             {
-                await fader.FadeOut();
+                await fader.FadeOut(ct);
                 isEnd = true;
             }).AddTo(this);
         
@@ -30,14 +30,14 @@ namespace Game.Scripts.Scene
         
             view.OnClickExitButton.SkipLatestValueOnSubscribe().Subscribe(async _ =>
             {
-                await fader.FadeOut();
+                await fader.FadeOut(ct);
                 isEnd = true;
             }).AddTo(this);
         }
 
         private async void OnEnable()
         {
-            await fader.FadeIn();
+            await fader.FadeIn(10.0f, ct);
         }
 
         private void Update()
