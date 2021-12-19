@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d548cbc17fd064185af9462941bc11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalMaterial: {fileID: 2100000, guid: 3f41a46dae459844fbc12ce6759455d4, type: 2}
   rawImage: {fileID: 5669991594585285896}
   defaultColor: {r: 0, g: 0, b: 0, a: 1}
   defaultTime: 0.5
@@ -186,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 3f41a46dae459844fbc12ce6759455d4, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}

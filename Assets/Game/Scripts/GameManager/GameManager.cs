@@ -35,6 +35,8 @@ namespace Game.Scripts.GameManager
         
         private void Awake()
         {
+            DontDestroyOnLoad(this);
+            
             SceneSequencer = GetComponent<SceneSequencer>();
             InputEventProvider = GetComponent<InputEventProviderFactory>().Initialize();
             Fader = Instantiate(fadePrefab, transform);
