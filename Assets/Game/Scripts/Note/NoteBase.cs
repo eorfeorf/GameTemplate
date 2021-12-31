@@ -6,6 +6,7 @@ namespace Game.Scripts.Notes
     public abstract class NoteBase : MonoBehaviour, INoteJudge
     {
         protected NoteType type;
+        protected Rect touchRange;
 
         public abstract void Initialize(GameContext gameContext, NoteType noteType, float[] judgeTimes);
 

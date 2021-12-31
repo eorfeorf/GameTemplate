@@ -12,10 +12,10 @@ namespace Game.Scripts.Scene
         {
             for (;;)
             {
-                // タイトル.
-                var title = Instantiate(titleScenePrefab, transform) as IScene;
-                await title.IsEndAsync();
-                title.Close();
+                // // タイトル.
+                // var title = Instantiate(titleScenePrefab, transform) as IScene;
+                // await title.IsEndAsync();
+                // title.Close();
 
                 // インゲーム.
                 var inGame = Instantiate(inGameScenePrefab, transform) as IScene;
