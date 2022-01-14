@@ -18,12 +18,12 @@ namespace Game.Scripts.GameManager
         // Core
         private SceneSequencer sceneSequencer;
         private InputEventProviderFactory input;
-        private GameContext gameContext;
+        private GameContext.GameContext gameContext;
         
         public SceneSequencer SceneSequencer { get; private set; }
         public IInputEventProvider InputEventProvider { get; private set; }
         public IScreenFader Fader { get; private set; }
-        public GameContext GameContext { get; private set; }
+        public GameContext.GameContext GameContext { get; private set; }
         
         
         // Modules
@@ -40,7 +40,7 @@ namespace Game.Scripts.GameManager
             SceneSequencer = GetComponent<SceneSequencer>();
             InputEventProvider = GetComponent<InputEventProviderFactory>().Initialize();
             Fader = Instantiate(fadePrefab, transform);
-            GameContext = GetComponent<GameContext>();
+            GameContext = new GameContext.GameContext();
             
             Timer = TryCreate(timerModule)?.GetComponent<ITimer>();
             Score = TryCreate(scoreModule)?.GetComponent<IScore>();
@@ -49,6 +49,11 @@ namespace Game.Scripts.GameManager
         private GameObject TryCreate(Module module)
         {
             return module.use ? Instantiate(module.prefab, transform) : null;
+        }
+
+        private void Update()
+        {
+            GameContext.Update(Time.deltaTime);
         }
     }
 }

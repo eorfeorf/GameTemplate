@@ -10,7 +10,7 @@ namespace Game.Scripts.Note
     {
         private float judgeTime;
 
-        public override void Initialize(GameContext gameContext, NoteType noteType, float[] judgeTimes)
+        public override void Initialize(GameContext.GameContext gameContext, NoteType noteType, float[] judgeTimes)
         {
             var judgeTime = judgeTimes[0];
             

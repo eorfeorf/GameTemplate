@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Game.Scripts.MusicScore;
 using Game.Scripts.Player;
@@ -16,28 +15,14 @@ namespace Game.Scripts.Stage
     /// <summary>
     /// プレイするために準備するクラス
     /// </summary>
-    public class Stage : MonoBehaviour
+    public class Stage
     {
-        [SerializeField] private NoteLoader noteLoader;
-        
-        //[SerializeField] private TouchRanges touchRanges;
-        [SerializeField] private MeshFilter[] touchRangeMeshFilters;
-        
-        private GameManager.GameManager gameManager;
-        private Player.Player player;
-
-        private void Awake()
+        public Stage(GameContext.GameContext context, IInputEventProvider inputEventProvider, NoteLoader noteLoader, MeshFilter[] touchRangeMeshFilters)
         {
-            gameManager = FindObjectOfType<GameManager.GameManager>();
-        }
-
-        private void Start()
-        {
-            //var musicScore = MusicScoreDownloader.Download(0);
             var musicScoreData = MusicScoreDataDownloader.Download(0);
-            var notes = noteLoader.Load(gameManager, musicScoreData);
-            var touchRanges = MeshFilterToRect(this.touchRangeMeshFilters);
-            player = new Player.Player(gameManager, notes, touchRanges);
+            var notes = noteLoader.Load(context, musicScoreData);
+            var touchRanges = MeshFilterToRect(touchRangeMeshFilters);
+            var player = new Player.Player(context, inputEventProvider, notes, touchRanges);
             player.Play();
         }
 

@@ -13,7 +13,7 @@ namespace Game.Scripts.Note
             this.type = type;
         }
 
-        public override void Initialize(GameContext gameContext, NoteType noteType, float[] judgeTimes)
+        public override void Initialize(GameContext.GameContext gameContext, NoteType noteType, float[] judgeTimes)
         {
             
         }

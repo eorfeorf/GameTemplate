@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Game.Scripts.MusicScore;
+using Game.Scripts.Note;
 using Game.Scripts.Notes;
 using UniRx;
 using UnityEngine;
@@ -8,19 +9,18 @@ namespace Game.Scripts.Player
 {
     public class Player
     {
-        private CompositeDisposable disposable = new CompositeDisposable();
-        private List<NoteBase> notes;
-        private Rect[] touchRanges; 
+        private readonly CompositeDisposable disposable = new CompositeDisposable();
+        private readonly List<NoteBase> notes;
+        private Rect[] touchRanges;
+        private readonly GameContext.GameContext gameContext;
 
-        private GameManager.GameManager gameManager;
-
-        public Player(GameManager.GameManager gameManager, List<NoteBase> notes, Rect[] touchRanges)
+        public Player(GameContext.GameContext context, IInputEventProvider inputEventProvider, List<NoteBase> notes, Rect[] touchRanges)
         {
-            this.gameManager = gameManager;
+            gameContext = context;
             this.notes = notes;
             this.touchRanges = touchRanges;
 
-            gameManager.InputEventProvider.OnTouches.SkipLatestValueOnSubscribe().Subscribe(Judge).AddTo(disposable);
+            inputEventProvider.OnTouches.SkipLatestValueOnSubscribe().Subscribe(Judge).AddTo(disposable);
         }
 
         ~Player()
@@ -30,7 +30,7 @@ namespace Game.Scripts.Player
 
         public void Play()
         {
-            gameManager.GameContext.InGamePlay();
+            gameContext.InGamePlay();
         }
 
         private void Judge(Touch[] touches)
@@ -40,12 +40,12 @@ namespace Game.Scripts.Player
             // 有効なタッチ情報をノーツに割り当てる.
             foreach (var touch in touches)
             {
-                // タッチ範囲にタッチしたらノーツを押したことにする
+                // TODO:タッチ範囲にタッチしたらノーツを押したことにする
                 var touchPos = touch.position;
 
                 foreach (var note in notes)
                 {
-                    note.Judge(touch, gameManager.GameContext.PlayingTime.Value);
+                    note.Judge(touch, gameContext.PlayingTime.Value);
                 }
             }
         }

@@ -1,4 +1,3 @@
-using Game.Scripts.GameManager;
 using Game.Scripts.Notes;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ namespace Game.Scripts.Note
 {
     public class LongNote : NoteBase
     {
-        public override void Initialize(GameContext gameContext, NoteType noteType, float[] judgeTimes)
+        public override void Initialize(GameContext.GameContext gameContext, NoteType noteType, float[] judgeTimes)
         {
             throw new System.NotImplementedException();
         }

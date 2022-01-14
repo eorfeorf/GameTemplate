@@ -1,11 +1,8 @@
 {
-    "name": "Game.Scripts.Notes",
+    "name": "Game.Scripts.GameContext",
     "rootNamespace": "",
     "references": [
-        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
-        "GUID:7278fbed6bf91284ca43a2d3d8f7369c",
-        "GUID:2e6c0405962da7443b68f3642b06dc7d",
-        "GUID:96df4e492b421d04589fa323c8adc71b"
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

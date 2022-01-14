@@ -1,10 +1,15 @@
+using Game.Scripts.Stage;
 using UnityEngine;
 
 public sealed class InGame : SceneBase
 {
+    private Stage stage;
+    
     protected override void Awake()
     {
         base.Awake();
+
+        stage = new Stage();
     }
 
     private async void OnEnable()

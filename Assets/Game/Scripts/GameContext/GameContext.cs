@@ -1,13 +1,13 @@
 using UniRx;
 using UnityEngine;
 
-namespace Game.Scripts.GameManager
+namespace Game.Scripts.GameContext
 {
     /// <summary>
     /// ゲーム全体でまたがるデータを保持するクラス。
     /// 分割しないといけなさそう。
     /// </summary>
-    public class GameContext : MonoBehaviour
+    public class GameContext
     {
         /// <summary>プレイ開始時間</summary>
         public IReadOnlyReactiveProperty<float> PlayStartTime => playStartTime;
@@ -18,10 +18,10 @@ namespace Game.Scripts.GameManager
 
         private float playingTimer;
         
-        private void Update()
+        public void Update(float deltaTime)
         {
             // Time.deltaTimeで足すのは怖い。勇気を持って。
-            playingTimer += Time.deltaTime;
+            playingTimer += deltaTime;
             playingTime.Value =  playingTimer - PlayStartTime.Value;
         }
 
@@ -31,5 +31,6 @@ namespace Game.Scripts.GameManager
             playingTimer = time;
             playStartTime.Value = time;
         }
+        
     }
 }
