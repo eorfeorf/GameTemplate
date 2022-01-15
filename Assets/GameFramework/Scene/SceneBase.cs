@@ -30,4 +30,6 @@ public abstract class SceneBase : MonoBehaviour, IScene
     {
         Destroy(gameObject);
     }
+    
+    public abstract void Initialize();
 }

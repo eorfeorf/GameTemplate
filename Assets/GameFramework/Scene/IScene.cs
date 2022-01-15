@@ -7,4 +7,5 @@ public interface IScene
 {
     UniTask IsEndAsync();
     void Close();
+    void Initialize();
 }
