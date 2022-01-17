@@ -1,5 +1,4 @@
 using System;
-using Game.Scripts.GameManager;
 using Game.Scripts.Notes;
 using UniRx;
 using UnityEngine;

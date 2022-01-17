@@ -12,4 +12,8 @@ public interface IInputEventProvider
     public IReadOnlyReactiveProperty<Unit> OnPushedDecide { get; }
 
     public IReadOnlyReactiveProperty<Touch[]> OnTouches { get; }
+    
+    // ゲーム固有
+    public int ButtonNum { get; }
+    // public IReadOnlyReactiveProperty<Unit>[] OnPushedButtons { get; }
 }

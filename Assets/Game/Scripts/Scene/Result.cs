@@ -7,6 +7,11 @@ public sealed class Result : SceneBase
         base.Awake();
     }
 
+    public override void Initialize()
+    {
+        
+    }
+
     private async void OnEnable()
     {
         await fader.FadeIn(ct);

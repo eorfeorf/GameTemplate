@@ -26,6 +26,8 @@ namespace Game.Scripts.Input
         public IReadOnlyReactiveProperty<Touch[]> OnTouches => onTouches;
         private ReactiveProperty<Touch[]> onTouches = new ReactiveProperty<Touch[]>();
 
+        public int ButtonNum { get; } = 8;
+
         private void Update()
         {
             onVertical.Value = UnityEngine.Input.GetAxis("Vertical");

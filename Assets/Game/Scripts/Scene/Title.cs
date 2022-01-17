@@ -11,6 +11,11 @@ public sealed class Title : SceneBase
         view = GetComponent<TitleView>();
     }
 
+    public override void Initialize()
+    {
+        
+    }
+
     private void Start()
     {
         view.OnClickStartButton.SkipLatestValueOnSubscribe().Subscribe(async _ =>

@@ -23,6 +23,12 @@ public sealed class PlayerInputEventProvider : MonoBehaviour, IInputEventProvide
     public IReadOnlyReactiveProperty<Touch[]> OnTouches => onTouches;
     private ReactiveProperty<Touch[]> onTouches = new ReactiveProperty<Touch[]>();
     
+    // ゲーム固有
+    public int ButtonNum { get; }
+    // public IReadOnlyReactiveProperty<Unit>[] IInputEventProvider.OnPushedButtons => onPushedButtons;
+    // private readonly ReactiveProperty<Unit>[] onPushedButtons = new ReactiveProperty<Unit>();
+    
+
     private void Update()
     {
         onVertical.Value = Input.GetAxis("Vertical");
@@ -57,7 +63,7 @@ public sealed class PlayerInputEventProvider : MonoBehaviour, IInputEventProvide
         {
             onPushedCancel.SetValueAndForceNotify(Unit.Default);
         }
-
+        
         onTouches.Value = UnityEngine.Input.touches;
     }
 }

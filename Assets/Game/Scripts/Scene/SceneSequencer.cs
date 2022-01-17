@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Game.Scripts.Scene
@@ -10,22 +11,33 @@ namespace Game.Scripts.Scene
 
         private async void Start()
         {
-            for (;;)
+            try
             {
-                // // タイトル.
-                // var title = Instantiate(titleScenePrefab, transform) as IScene;
-                // await title.IsEndAsync();
-                // title.Close();
+                for (;;)
+                {
+                    // // タイトル.
+                    // var title = Instantiate(titleScenePrefab, transform) as IScene;
+                    // title.Initialize();
+                    // await title.IsEndAsync();
+                    // title.Close();
 
-                // インゲーム.
-                var inGame = Instantiate(inGameScenePrefab, transform) as IScene;
-                await inGame.IsEndAsync();
-                inGame.Close();
+                    // インゲーム.
+                    var inGame = Instantiate(inGameScenePrefab, transform) as IScene;
+                    inGame.Initialize();
+                    await inGame.IsEndAsync();
+                    inGame.Close();
 
-                // リザルト.
-                var result = Instantiate(resultScenePrefab, transform) as IScene;
-                await result.IsEndAsync();
-                result.Close();
+                    // リザルト.
+                    var result = Instantiate(resultScenePrefab, transform) as IScene;
+                    inGame.Initialize();
+                    await result.IsEndAsync();
+                    result.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+                //Console.WriteLine(e);
             }
         }
     }

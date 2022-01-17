@@ -1,12 +1,16 @@
 {
-    "name": "Game.Scripts.Stage",
+    "name": "Game.Scripts.Scene.InGame",
     "rootNamespace": "",
     "references": [
-        "GUID:96df4e492b421d04589fa323c8adc71b",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:5e5eb8718b6cd924fbe9219460f4f821",
+        "GUID:5b92d0b5eb4ae59419b7c0ef15893e3d",
+        "GUID:79f98231c83d41b4e97d8bc93aca503b",
         "GUID:caa99597112f6e748b13700d6e33a68a",
-        "GUID:7278fbed6bf91284ca43a2d3d8f7369c",
         "GUID:550aa677faa7d7348b43f170ddb029a4",
-        "GUID:178f69d129b2dd54db4e0e49b5ed9086"
+        "GUID:96df4e492b421d04589fa323c8adc71b",
+        "GUID:2e6c0405962da7443b68f3642b06dc7d"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

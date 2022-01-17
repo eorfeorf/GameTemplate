@@ -1,4 +1,3 @@
-using Game.Scripts.GameManager;
 using Game.Scripts.Notes;
 using UnityEngine;
 
