@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using UniRx;
 using UnityEngine;
 
 public interface IScreenFader
@@ -13,4 +14,5 @@ public interface IScreenFader
     public UniTask FadeIn(CancellationToken ct);
     public UniTask FadeOut(CancellationToken ct);
 
+    public IReactiveProperty<Unit> OnFadeEnd { get; }
 }

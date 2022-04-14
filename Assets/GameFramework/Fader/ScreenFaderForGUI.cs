@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class ScreenFaderForGUI : ScreenFaderBase
     private Material mat;
     private static readonly int Alpha = Shader.PropertyToID("_Alpha");
     private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
+    
 
     private void Awake()
     {
@@ -82,6 +84,7 @@ public class ScreenFaderForGUI : ScreenFaderBase
             if (timer > time)
             {
                 Debug.Log("[Fade] In End");
+                onFadeEnd.Value = Unit.Default;
                 return;
             }
 
@@ -101,6 +104,7 @@ public class ScreenFaderForGUI : ScreenFaderBase
             if (timer > time)
             {
                 Debug.Log("[Fade] Out End");
+                onFadeEnd.Value = Unit.Default;
                 return;
             }
 

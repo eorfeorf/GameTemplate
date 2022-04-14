@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class ScreenFader : ScreenFaderBase
 {
-    [SerializeField] private ForwardRendererData rendererData;
+    [SerializeField] private UniversalRendererData rendererData;
     [SerializeField] private Color defaultColor = Color.black;
     [SerializeField] private float defaultTime = 0.5f;
 
