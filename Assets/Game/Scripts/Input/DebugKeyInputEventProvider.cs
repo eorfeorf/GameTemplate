@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using GameFramework.Input;
+using UniRx;
 using UnityEngine;
 
 namespace Game.Scripts.Input

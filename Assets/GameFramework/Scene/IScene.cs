@@ -1,10 +1,13 @@
-using Cysharp.Threading.Tasks;
+using Game.Scripts.Scene;
 
-/// <summary>
-/// 外部操作用のインターフェイス. 
-/// </summary>
-public interface IScene
+namespace GameFramework.Scene
 {
-    UniTask IsEndAsync();
-    void Close();
+    public interface IScene
+    {
+        SceneData sceneData { get; set; }
+
+        void Initialize(SceneData sceneData);
+
+        void OnDispose();
+    }
 }

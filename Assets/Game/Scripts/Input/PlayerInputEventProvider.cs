@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using GameFramework.Input;
+using UniRx;
 using UnityEngine;
 
 public sealed class PlayerInputEventProvider : MonoBehaviour, IInputEventProvider

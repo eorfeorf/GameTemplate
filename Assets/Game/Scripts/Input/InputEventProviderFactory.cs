@@ -1,28 +1,29 @@
-using System;
-using Game.Scripts.Input;
+using GameFramework.Input;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-// TODO:ランタイムで入力タイプを切り替えられるようにする.
-public class InputEventProviderFactory : MonoBehaviour
+namespace Game.Scripts.Input
 {
-    [SerializeField] private bool playerKeyboardInput;
-
-    private IInputEventProvider inputEventProvider;
-    
-    public IInputEventProvider Initialize()
+    /// <summary>
+    /// Unityから入力イベントを生成するクラス
+    /// </summary>
+    public class InputEventProviderFactory : MonoBehaviour
     {
-        if (playerKeyboardInput)
+        private IInputEventProvider inputEventProvider;
+    
+        public IInputEventProvider Initialize()
         {
+            
+            // TODO:ランタイムで入力タイプを切り替えられるようにする.
             inputEventProvider = gameObject.AddComponent<PlayerInputEventProvider>();   
-        }
         
 #if UNITY_EDITOR
-        inputEventProvider = gameObject.AddComponent<DebugKeyInputEventProvider>();
+            inputEventProvider = gameObject.AddComponent<DebugKeyInputEventProvider>();
 #endif
         
-        Assert.IsNotNull(inputEventProvider);
+            Assert.IsNotNull(inputEventProvider);
 
-        return inputEventProvider;
+            return inputEventProvider;
+        }
     }
 }

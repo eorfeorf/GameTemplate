@@ -1,7 +1,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace Game.Scripts.GameManager
+namespace GameFramework.Core
 {
     /// <summary>
     /// ゲーム全体でまたがるデータを保持するクラス。

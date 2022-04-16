@@ -1,6 +1,5 @@
-using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
+using Game.Scripts.Scene;
+using GameFramework.Core;
 using UnityEngine;
 
 namespace GameFramework.Scene
@@ -8,30 +7,31 @@ namespace GameFramework.Scene
     /// <summary>
     /// シーンの基本機能クラス.
     /// </summary>
-    public abstract class SceneBase : MonoBehaviour, IScene
+    public abstract class SceneBase<TPresenter, TModel, TSceneData> : IScene
+        where TPresenter : ScenePresenterBase<TModel>
+        where TModel : SceneModelBase<TSceneData>,
+        new() where TSceneData : SceneData
     {
-        [SerializeField] protected string sceneName;
+        public SceneData sceneData { get; set; }
+        protected TModel model;
+        protected TPresenter presenter;
 
-        protected bool isEnd = false;
-        
-        protected IScreenFader fader;
-        protected CancellationToken ct;
+        protected GameSceneManager sceneManager;
+        protected GameContext gameContext;
 
-        protected virtual void Awake()
+        public void Initialize(SceneData sceneData)
         {
-            fader = FindObjectOfType<ScreenFaderBase>();
-            ct = this.GetCancellationTokenOnDestroy();
+            model = new TModel() {sceneData = (TSceneData) sceneData};
         }
 
-        public async UniTask IsEndAsync()
+        public virtual void InitPresenter(GameObject go)
         {
-            await UniTask.WaitUntil(() => isEnd, cancellationToken: ct);
-            Debug.Log($"SceneBase : {sceneName} -> end");
+            presenter = go.GetComponent<TPresenter>();
+            presenter.Initialize(model, sceneManager, gameContext);
         }
 
-        public void Close()
+        public void OnDispose()
         {
-            Destroy(gameObject);
         }
     }
 }
