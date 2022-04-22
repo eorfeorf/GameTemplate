@@ -1,4 +1,3 @@
-using Game.Scripts.Scene;
 using GameFramework.Core;
 using UnityEngine;
 
@@ -22,6 +21,11 @@ namespace GameFramework.Scene
         public void Initialize(SceneData sceneData)
         {
             model = new TModel() {sceneData = (TSceneData) sceneData};
+        }
+
+        public void InitPresenter()
+        {
+            throw new System.NotImplementedException();
         }
 
         public virtual void InitPresenter(GameObject go)

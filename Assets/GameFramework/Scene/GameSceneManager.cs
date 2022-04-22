@@ -1,6 +1,7 @@
+using System;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Game.Scripts.Scene;
 using UnityEngine.SceneManagement;
 
 namespace GameFramework.Scene
@@ -11,6 +12,8 @@ namespace GameFramework.Scene
     public class GameSceneManager
     {
         private SceneData data;
+        private IScene currentScene;
+        
         private readonly CancellationToken ct;
         private readonly IScreenFader? fader;
         
@@ -28,16 +31,29 @@ namespace GameFramework.Scene
         // Additiveを想定していない
         private async UniTask LoadScene(SceneData data)
         {
-            // TODO:ロード画面ON
+            // ロード画面ON
             fader?.FadeOut(ct);
         
             // シーンアンロード
             await SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
             
+            // シーンを生成
+            var scene = (IScene) Activator.CreateInstance(data.type);
+            scene.Initialize(data);
+            scene.InitPresenter();
+            
+            
+            currentScene = scene;
+            
             // シーンロード
-            SceneManager.LoadScene(data.name);
+            await SceneManager.LoadSceneAsync(data.name);
+            
+            // シーンにあるPresenterを初期化
+            // var goPresenter = SceneManager.GetSceneByName(data.name).GetRootGameObjects().FirstOrDefault(go => go.name == data.name);
+            // goPresenter
+            
         
-            // TODO:ロード画面OFF
+            // ロード画面OFF
             fader?.FadeIn(ct);
         }
     }

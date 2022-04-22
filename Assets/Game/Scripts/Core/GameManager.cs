@@ -20,7 +20,7 @@ namespace Game.Scripts.Core
         public IInputEventProvider InputEventProvider { get; private set; }
         public IScreenFader Fader { get; private set; }
         public GameContext GameContext { get; private set; }
-        
+
         private GameSceneManager gameSceneManager;
         private InputEventProviderFactory input;
         private GameContext gameContext;
