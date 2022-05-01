@@ -1,3 +1,4 @@
+using System;
 using GameFramework.Input;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -10,7 +11,7 @@ namespace Game.Scripts.Input
     public class InputEventProviderFactory : MonoBehaviour
     {
         private IInputEventProvider inputEventProvider;
-    
+
         public IInputEventProvider Initialize()
         {
             

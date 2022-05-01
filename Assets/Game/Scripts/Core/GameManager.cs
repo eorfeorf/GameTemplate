@@ -27,15 +27,14 @@ namespace Game.Scripts.Core
         
         private void Awake()
         {
-            DontDestroyOnLoad(this);
-
             var ct = this.GetCancellationTokenOnDestroy();
-
             InputEventProvider = GetComponent<InputEventProviderFactory>().Initialize();
             Fader = Instantiate(fadePrefab, transform);
             GameContext = GetComponent<GameContext>();
             
             GameSceneManager = new GameSceneManager(ct, gameContext, Fader);
+            
+            DontDestroyOnLoad(gameObject);
         }
     }
 }
