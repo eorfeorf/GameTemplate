@@ -25,7 +25,7 @@ namespace GameFramework.Scene
             this.context = context;
         }
 
-        public virtual void PresenterInitialize(GameObject go)
+        public void PresenterInitialize(GameObject go)
         {
             presenter = go.GetComponent<TPresenter>();
             presenter.Initialize(model, sceneManager, context);
@@ -33,6 +33,7 @@ namespace GameFramework.Scene
 
         public void OnDispose()
         {
+            
         }
     }
 }
