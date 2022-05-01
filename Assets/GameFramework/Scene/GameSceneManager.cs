@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using GameFramework.Core;
 using UnityEngine.SceneManagement;
 
 namespace GameFramework.Scene
@@ -13,12 +14,16 @@ namespace GameFramework.Scene
     {
         private SceneData data;
         private IScene currentScene;
+
+        private GameContext context;
         
         private readonly CancellationToken ct;
         private readonly IScreenFader? fader;
         
-        public GameSceneManager(CancellationToken ct, IScreenFader fader)
+        public GameSceneManager(CancellationToken ct, GameContext context, IScreenFader fader)
         {
+            this.context = context;
+            
             this.ct = ct;
             this.fader = fader;
         }
@@ -37,11 +42,9 @@ namespace GameFramework.Scene
             // シーンアンロード
             await SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
             
-            // シーンを生成
+            // シーンデータを生成
             var scene = (IScene) Activator.CreateInstance(data.type);
-            scene.Initialize(data);
-            scene.InitPresenter();
-            
+            scene.Initialize(data, this, context);
             
             currentScene = scene;
             
@@ -49,8 +52,8 @@ namespace GameFramework.Scene
             await SceneManager.LoadSceneAsync(data.name);
             
             // シーンにあるPresenterを初期化
-            // var goPresenter = SceneManager.GetSceneByName(data.name).GetRootGameObjects().FirstOrDefault(go => go.name == data.name);
-            // goPresenter
+            var goPresenter = SceneManager.GetSceneByName(data.name).GetRootGameObjects().FirstOrDefault(go => go.name == data.name);
+            scene.PresenterInitialize(goPresenter);
             
         
             // ロード画面OFF

@@ -1,8 +1,9 @@
 using GameFramework.Core;
+using UnityEngine;
 
 namespace GameFramework.Scene
 {
-    public abstract class ScenePresenterBase<TModel>
+    public abstract class ScenePresenterBase<TModel> : MonoBehaviour
     {
         protected TModel model;
         protected GameSceneManager gameSceneManager;
@@ -13,6 +14,11 @@ namespace GameFramework.Scene
             this.model = model;
             this.gameSceneManager = gameSceneManager;
             this.gameContext = gameContext;
+        }
+
+        public void SetModel(TModel model)
+        {
+            this.model = model;
         }
     }
 }

@@ -16,22 +16,19 @@ namespace GameFramework.Scene
         protected TPresenter presenter;
 
         protected GameSceneManager sceneManager;
-        protected GameContext gameContext;
+        protected GameContext context;
 
-        public void Initialize(SceneData sceneData)
+        public void Initialize(SceneData sceneData, GameSceneManager sceneManager, GameContext context)
         {
             model = new TModel() {sceneData = (TSceneData) sceneData};
+            this.sceneManager = sceneManager;
+            this.context = context;
         }
 
-        public void InitPresenter()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public virtual void InitPresenter(GameObject go)
+        public virtual void PresenterInitialize(GameObject go)
         {
             presenter = go.GetComponent<TPresenter>();
-            presenter.Initialize(model, sceneManager, gameContext);
+            presenter.Initialize(model, sceneManager, context);
         }
 
         public void OnDispose()

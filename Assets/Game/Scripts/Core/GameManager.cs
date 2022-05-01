@@ -31,10 +31,11 @@ namespace Game.Scripts.Core
 
             var ct = this.GetCancellationTokenOnDestroy();
 
-            GameSceneManager = new GameSceneManager(ct, null);
             InputEventProvider = GetComponent<InputEventProviderFactory>().Initialize();
             Fader = Instantiate(fadePrefab, transform);
             GameContext = GetComponent<GameContext>();
+            
+            GameSceneManager = new GameSceneManager(ct, gameContext, Fader);
         }
     }
 }

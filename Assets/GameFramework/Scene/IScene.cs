@@ -1,3 +1,6 @@
+using GameFramework.Core;
+using UnityEngine;
+
 namespace GameFramework.Scene
 {
     /// <summary>
@@ -7,9 +10,9 @@ namespace GameFramework.Scene
     {
         SceneData sceneData { get; }
 
-        void Initialize(SceneData sceneData);
+        void Initialize(SceneData sceneData, GameSceneManager sceneManager, GameContext context);
 
-        void InitPresenter();
+        void PresenterInitialize(GameObject go);
 
         void OnDispose();
     }
