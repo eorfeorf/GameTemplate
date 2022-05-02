@@ -18,7 +18,7 @@ namespace GameFramework.Scene
         private GameContext context;
         
         private readonly CancellationToken ct;
-        private readonly IScreenFader? fader;
+        private readonly IScreenFader fader;
         
         public GameSceneManager(CancellationToken ct, GameContext context, IScreenFader fader)
         {
@@ -37,10 +37,10 @@ namespace GameFramework.Scene
         private async UniTask LoadScene(SceneData data)
         {
             // ロード画面ON
-            fader?.FadeOut(ct);
+            await fader.FadeOut(ct);
         
             // シーンアンロード
-            await SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
+            //await SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
             
             // シーンデータを生成
             var scene = (IScene) Activator.CreateInstance(data.type);
@@ -57,7 +57,7 @@ namespace GameFramework.Scene
             
         
             // ロード画面OFF
-            fader?.FadeIn(ct);
+            fader.FadeIn(ct);
         }
     }
 }
