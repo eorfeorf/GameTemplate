@@ -2,7 +2,8 @@
     "name": "GameFramework.Core",
     "rootNamespace": "",
     "references": [
-        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:550aa677faa7d7348b43f170ddb029a4"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

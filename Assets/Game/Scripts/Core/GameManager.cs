@@ -17,9 +17,9 @@ namespace Game.Scripts.Core
         [SerializeField] private ScreenFaderBase fadePrefab;
         
         public GameSceneManager GameSceneManager { get; private set; }
+        public GameContext GameContext => gameContext;
         public IInputEventProvider InputEventProvider { get; private set; }
         public IScreenFader Fader { get; private set; }
-        public GameContext GameContext { get; private set; }
 
         private GameSceneManager gameSceneManager;
         private InputEventProviderFactory input;
@@ -28,10 +28,16 @@ namespace Game.Scripts.Core
         private void Awake()
         {
             var ct = this.GetCancellationTokenOnDestroy();
-            InputEventProvider = GetComponent<InputEventProviderFactory>().Initialize();
-            Fader = Instantiate(fadePrefab, transform);
-            GameContext = GetComponent<GameContext>();
             
+            // Create Modules. 
+            InputEventProvider = GetComponent<InputEventProviderFactory>().Initialize();
+            Fader = Instantiate(fadePrefab, null);
+            
+            // Context
+            gameContext = GetComponent<GameContext>();
+            gameContext.Initialize(InputEventProvider);
+            
+            // SceneManager
             GameSceneManager = new GameSceneManager(ct, gameContext, Fader);
             
             DontDestroyOnLoad(gameObject);
