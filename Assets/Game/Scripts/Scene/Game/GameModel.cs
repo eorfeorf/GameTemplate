@@ -1,6 +1,4 @@
-using GameFramework.Core;
 using GameFramework.Scene;
-using UnityEngine;
 
 namespace Game.Scripts.Scene.Game
 {

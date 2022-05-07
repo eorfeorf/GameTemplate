@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class ScreenFaderForGUI : ScreenFaderBase
 {
+    [SerializeField] private Canvas canvas;
     [SerializeField] private Material originalMaterial;
     [SerializeField] private RawImage rawImage;
     [SerializeField] private Color defaultColor = Color.black;
@@ -21,6 +22,7 @@ public class ScreenFaderForGUI : ScreenFaderBase
 
     private void Awake()
     {
+        canvas.worldCamera = Camera.current;
         mat = new Material(originalMaterial);
         rawImage.material = mat;
     }
