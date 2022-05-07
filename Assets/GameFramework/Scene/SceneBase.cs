@@ -23,6 +23,7 @@ namespace GameFramework.Scene
             model = new TModel() {sceneData = (TSceneData) sceneData};
             this.sceneManager = sceneManager;
             this.context = context;
+            model.Initialize(sceneManager, context);
         }
 
         public void PresenterInitialize(GameObject go)
