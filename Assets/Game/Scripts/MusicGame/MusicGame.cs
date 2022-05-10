@@ -42,7 +42,7 @@ namespace Game.Scripts.MusicGame
         private Dictionary<Note, NoteView> noteToViewMap = new();
         private List<Note> notes = new();
 
-        public MusicGame(GameContext context, NoteViewMaker noteViewMaker)
+        public MusicGame(GameContext context, NoteViewMaker noteViewMaker, NotePointSettings notePointSettings)
         {
             gameContext = context;
             
@@ -53,20 +53,27 @@ namespace Game.Scripts.MusicGame
             
             // ノーツデータを生成
             // ノーツビューを生成
-            for (int i = 0; i < 5; ++i)
+            for (int i = 0; i < 1; ++i)
             {
                 var noteView = noteViewMaker.CreateNote(NoteType.Normal);
-                var note = new Note(i * 2f + 3f, NoteType.Normal, noteView);
+                var prevPoint = i % 4;
+                var nextPoint = (i + 1) % 4; 
+                var note = new Note(i * 2f + 3f, NoteType.Normal, (NotePointType)prevPoint, (NotePointType)nextPoint, noteView);
                 notes.Add(note);
                 noteToViewMap.Add(note, noteView);
                 
                 gameContext.PlayingTime.Subscribe(time =>
                 {
+                    var nextPosition = notePointSettings.GetPosition(note.NextPoint);
+                    var prevPosition = notePointSettings.GetPosition(note.PrevPoint);
+                    var subPosition = prevPosition - nextPosition;
                     var subTime = note.Time - time;
-                    noteView.transform.position = new Vector3(0f, subTime, 0f);
+                    var pos = nextPosition + subPosition * subTime;
+                    noteView.transform.position = new Vector3(pos.x, pos.y, 0f);
 
                     // 判定時間を過ぎた
-                    if (note.Active && subTime < -BAD_TIME)
+                    //if (note.Active && subTime < -BAD_TIME)
+                    if (note.Active && subTime < 0)
                     {
                         note.Active = false;
                         noteToViewMap[note].gameObject.SetActive(false);

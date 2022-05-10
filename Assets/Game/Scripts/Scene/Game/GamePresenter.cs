@@ -8,8 +8,9 @@ namespace Game.Scripts.Scene.Game
 {
     public class GamePresenter : ScenePresenterBase<GameModel>
     {
-        [SerializeField] private GameObject gameView;
+        [SerializeField] private GameObject noteViewParent;
         [SerializeField] private JudgeRankView judgeRankView;
+        [SerializeField] private NotePointSettings notePointSettings;
         
         private NoteViewMaker noteViewMaker;
         private MusicGame.MusicGame musicGame;
@@ -31,9 +32,9 @@ namespace Game.Scripts.Scene.Game
         private void Start()
         {
             noteViewMaker = GetComponent<NoteViewMaker>();
-            noteViewMaker.SetParent(gameView.transform);
+            noteViewMaker.SetParent(noteViewParent.transform);
             
-            musicGame = new MusicGame.MusicGame(gameContext, noteViewMaker);
+            musicGame = new MusicGame.MusicGame(gameContext, noteViewMaker, notePointSettings);
 
             musicGame.Rank.SkipLatestValueOnSubscribe().Subscribe(rank =>
             {
