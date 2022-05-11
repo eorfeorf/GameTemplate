@@ -21,6 +21,8 @@ namespace Game.Scripts.MusicGame
 
         private void Start()
         {
+            judgeRankText.text = "";
+            
             judgeRank.SkipLatestValueOnSubscribe().Subscribe(rank =>
             {
                 judgeRankText.text = RankTexts[(int) rank];
